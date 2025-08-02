@@ -17,5 +17,5 @@ Instrucciones:
 3. Verifica que se hayan creado correctamente las tablas y la vista
 4. Opcional: Crea capturas de pantalla mostrando la vista y los permisos
 
-Desarrollado por: [Tu Nombre]
+Desarrollado por: Daniel Felipe Quintero
 Fecha: Agosto 2025
