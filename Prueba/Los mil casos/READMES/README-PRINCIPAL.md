@@ -23,6 +23,7 @@
 
 ### 📁 **07-Casos-Uso/**
 - **[README-CASOS-USO.md](07-Casos-Uso/README-CASOS-USO.md)** - Adaptación del código para diferentes contextos de negocio
+- **[README-CASOS-USO-EXTENDIDO.md](07-Casos-Uso/README-CASOS-USO-EXTENDIDO.md)** - **🚀 50+ Casos de uso empresariales**
 - **[README-ADAPTACION-CODIGO.md](07-Casos-Uso/README-ADAPTACION-CODIGO.md)** - Guía paso a paso para copiar y pegar código inteligentemente
 
 ### 📁 **08-Excel-MySQL/**
@@ -50,7 +51,7 @@
 4. **📁 04-Backend/** - Desarrolla el backend
 5. **📁 05-Frontend/** - Crea la interfaz de usuario
 6. **📁 06-Herramientas/** - Aprende Postman y manejo de CSV
-7. **📁 07-Casos-Uso/** - Adapta el código a otros contextos (incluye guía de copia y pega)
+7. **📁 07-Casos-Uso/** - Adapta el código a otros contextos (incluye **50+ casos de uso** y guía de copia y pega)
 8. **📁 08-Excel-MySQL/** - Importa datos directamente desde Excel
 9. **📁 09-Seguridad/** - Implementa seguridad y validaciones
 10. **📁 10-Testing/** - Añade testing y documentación
