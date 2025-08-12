@@ -1,0 +1,9 @@
+nombre,principio_activo,categoria,presentacion,concentracion,laboratorio,precio_compra,precio_venta,stock_actual,stock_minimo,fecha_vencimiento,requiere_receta,estado
+Aspirina,Ácido Acetilsalicílico,Analgésico,Tableta,100mg,Bayer,1.50,3.99,120,15,2025-12-31,no,activo
+Diclofenaco,Diclofenaco Sódico,Antiinflamatorio,Tableta,50mg,Novartis,2.80,5.50,85,12,2025-11-20,no,activo
+Ciprofloxacino,Ciprofloxacino,Antibiótico,Tableta,500mg,Bayer,12.50,22.99,30,8,2025-09-15,si,activo
+Ranitidina,Ranitidina,Protector Gástrico,Tableta,150mg,GSK,4.20,8.50,65,10,2025-10-30,no,activo
+Cetirizina,Cetirizina,Antialérgico,Tableta,10mg,UCB,3.90,7.99,95,15,2025-08-25,no,activo
+Glibenclamida,Glibenclamida,Antidiabético,Tableta,5mg,Sanofi,8.75,16.50,25,5,2025-07-10,si,activo
+Simvastatina,Simvastatina,Hipolipemiante,Tableta,20mg,Merck,15.30,28.99,18,3,2025-06-20,si,activo
+Vitamina D3,Colecalciferol,Vitamina,Cápsula,1000UI,Nature Made,6.80,12.99,150,20,2026-02-28,no,activo

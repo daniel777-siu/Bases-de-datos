@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Formulario de Registro de Usuario</title>
+    <link rel="stylesheet" href="01-registro-usuario.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>📝 Registro de Usuario</h1>
+                <p>Completa todos los campos para crear tu cuenta</p>
+            </div>
+
+            <form id="registroForm" class="registro-form">
+                <!-- Información Personal -->
+                <div class="form-section">
+                    <h3>👤 Información Personal</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                            <span class="error-message" id="nombre-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de Nacimiento *</label>
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                            <span class="error-message" id="fechaNacimiento-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dni">DNI/Pasaporte *</label>
+                            <input type="text" id="dni" name="dni" required>
+                            <span class="error-message" id="dni-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="genero">Género</label>
+                            <select id="genero" name="genero">
+                                <option value="">Seleccionar...</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="otro">Otro</option>
+                                <option value="prefiero-no-decir">Prefiero no decir</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="form-section">
+                    <h3>📧 Información de Contacto</h3>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                            <span class="error-message" id="telefono-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="celular">Celular</label>
+                            <input type="tel" id="celular" name="celular">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección Completa *</label>
+                        <textarea id="direccion" name="direccion" rows="3" required></textarea>
+                        <span class="error-message" id="direccion-error"></span>
+                    </div>
+                </div>
+
+                <!-- Información de Cuenta -->
+                <div class="form-section">
+                    <h3>🔐 Información de Cuenta</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Nombre de Usuario *</label>
+                            <input type="text" id="username" name="username" required>
+                            <span class="error-message" id="username-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Contraseña *</label>
+                            <div class="password-input">
+                                <input type="password" id="password" name="password" required>
+                                <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
+                            </div>
+                            <span class="error-message" id="password-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmar Contraseña *</label>
+                        <div class="password-input">
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">👁️</button>
+                        </div>
+                        <span class="error-message" id="confirmPassword-error"></span>
+                    </div>
+
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Fuerza de la contraseña</span>
+                    </div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="form-section">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terminos" name="terminos" required>
+                        <label for="terminos">
+                            Acepto los <a href="#" onclick="mostrarTerminos()">Términos y Condiciones</a> *
+                        </label>
+                        <span class="error-message" id="terminos-error"></span>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">
+                            Deseo recibir noticias y ofertas por correo electrónico
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="form-actions">
+                    <button type="button" onclick="limpiarFormulario()" class="btn btn-secondary">🧹 Limpiar</button>
+                    <button type="submit" class="btn btn-primary">✅ Registrar Usuario</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Panel de Resultados -->
+        <div class="results-panel" id="resultsPanel">
+            <h3>📊 Datos del Formulario</h3>
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Términos -->
+    <div id="terminosModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>📋 Términos y Condiciones</h2>
+            <div class="terminos-content">
+                <p>Al registrarte en nuestro sistema, aceptas los siguientes términos:</p>
+                <ul>
+                    <li>Proporcionar información veraz y actualizada</li>
+                    <li>Mantener la confidencialidad de tu cuenta</li>
+                    <li>No usar el sistema para fines maliciosos</li>
+                    <li>Aceptar las políticas de privacidad</li>
+                    <li>Respetar los derechos de otros usuarios</li>
+                </ul>
+                <p><strong>Fecha de actualización:</strong> 11 de Agosto, 2025</p>
+            </div>
+            <button onclick="cerrarModal()" class="btn btn-primary">Entendido</button>
+        </div>
+    </div>
+
+    <script src="01-registro-usuario.js"></script>
+</body>
+</html>

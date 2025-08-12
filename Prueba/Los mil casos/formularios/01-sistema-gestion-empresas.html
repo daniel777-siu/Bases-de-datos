@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Empresas</title>
+    <link rel="stylesheet" href="01-sistema-gestion-empresas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <h1>EmpresaCorp</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#empleados" class="nav-link">Empleados</a></li>
+                    <li><a href="#departamentos" class="nav-link">Departamentos</a></li>
+                    <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                    <li><a href="#reportes" class="nav-link">Reportes</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span class="user-name">Admin</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Sección de Inicio -->
+        <section id="inicio" class="section active">
+            <div class="hero-section">
+                <h2>Bienvenido al Sistema de Gestión</h2>
+                <p>Gestiona tu empresa de manera eficiente y organizada</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>150</h3>
+                        <p>Empleados</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-sitemap"></i>
+                        <h3>12</h3>
+                        <p>Departamentos</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>25</h3>
+                        <p>Proyectos Activos</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>85%</h3>
+                        <p>Eficiencia</p>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <h3>Acciones Rápidas</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="showSection('empleados')">
+                            <i class="fas fa-user-plus"></i> Agregar Empleado
+                        </button>
+                        <button class="btn btn-secondary" onclick="showSection('departamentos')">
+                            <i class="fas fa-plus"></i> Crear Departamento
+                        </button>
+                        <button class="btn btn-success" onclick="showSection('proyectos')">
+                            <i class="fas fa-rocket"></i> Nuevo Proyecto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Empleados -->
+        <section id="empleados" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Gestión de Empleados</h2>
+                <button class="btn btn-primary" onclick="showModal('empleadoModal')">
+                    <i class="fas fa-plus"></i> Nuevo Empleado
+                </button>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchEmpleados" placeholder="Buscar empleados...">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Departamento</th>
+                            <th>Cargo</th>
+                            <th>Salario</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="empleadosTableBody">
+                        <tr>
+                            <td>1</td>
+                            <td>Juan Pérez</td>
+                            <td>juan@empresa.com</td>
+                            <td>Desarrollo</td>
+                            <td>Programador</td>
+                            <td>$3,500</td>
+                            <td>
+                                <button class="btn-icon btn-edit" onclick="editEmpleado(1)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon btn-delete" onclick="deleteEmpleado(1)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Sección de Departamentos -->
+        <section id="departamentos" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-sitemap"></i> Gestión de Departamentos</h2>
+                <button class="btn btn-primary" onclick="showModal('departamentoModal')">
+                    <i class="fas fa-plus"></i> Nuevo Departamento
+                </button>
+            </div>
+            
+            <div class="departments-grid">
+                <div class="department-card">
+                    <div class="department-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Desarrollo</h3>
+                    </div>
+                    <p>Desarrollo de software y aplicaciones</p>
+                    <div class="department-stats">
+                        <span><i class="fas fa-users"></i> 25 empleados</span>
+                        <span><i class="fas fa-project-diagram"></i> 8 proyectos</span>
+                    </div>
+                    <div class="department-actions">
+                        <button class="btn btn-sm btn-edit">Editar</button>
+                        <button class="btn btn-sm btn-delete">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Proyectos -->
+        <section id="proyectos" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-project-diagram"></i> Gestión de Proyectos</h2>
+                <button class="btn btn-primary" onclick="showModal('proyectoModal')">
+                    <i class="fas fa-plus"></i> Nuevo Proyecto
+                </button>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-status active">Activo</div>
+                    <h3>Sistema Web</h3>
+                    <p>Desarrollo de sistema web para gestión interna</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span>75% Completado</span>
+                    </div>
+                    <div class="project-team">
+                        <span class="team-member">JP</span>
+                        <span class="team-member">AM</span>
+                        <span class="team-member">+3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Reportes -->
+        <section id="reportes" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Reportes y Estadísticas</h2>
+            </div>
+            
+            <div class="reports-grid">
+                <div class="report-card">
+                    <h3>Empleados por Departamento</h3>
+                    <canvas id="deptChart" width="300" height="200"></canvas>
+                </div>
+                <div class="report-card">
+                    <h3>Progreso de Proyectos</h3>
+                    <canvas id="projectChart" width="300" height="200"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>EmpresaCorp</h4>
+                <p>Sistema de gestión empresarial integral</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#empleados">Empleados</a></li>
+                    <li><a href="#departamentos">Departamentos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@empresacorp.com</p>
+                <p>Tel: +1 234 567 890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EmpresaCorp. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modales -->
+    <div id="empleadoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nuevo Empleado</h3>
+                <span class="close" onclick="closeModal('empleadoModal')">&times;</span>
+            </div>
+            <form class="form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="departamento">Departamento</label>
+                    <select id="departamento" name="departamento" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="desarrollo">Desarrollo</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="ventas">Ventas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cargo">Cargo</label>
+                    <input type="text" id="cargo" name="cargo" required>
+                </div>
+                <div class="form-group">
+                    <label for="salario">Salario</label>
+                    <input type="number" id="salario" name="salario" min="0" step="0.01" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('empleadoModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="01-sistema-gestion-empresas.js"></script>
+</body>
+</html>

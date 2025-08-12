@@ -1,0 +1,6 @@
+nombre,instructor,categoria,duracion_horas,precio,nivel,descripcion,fecha_inicio,cupos_disponibles,estado
+Vue.js Avanzado,Juan Pérez,Frontend,45,449.99,Avanzado,Desarrollo de aplicaciones complejas con Vue.js,2024-10-15,15,activo
+Angular para Principiantes,Laura Silva,Frontend,35,299.99,Principiante,Introducción al framework Angular,2024-10-20,20,activo
+Docker y Kubernetes,Roberto Díaz,DevOps,60,599.99,Intermedio,Containerización y orquestación de aplicaciones,2024-10-25,12,activo
+Machine Learning con Python,Ana Martínez,Data Science,90,799.99,Avanzado,Algoritmos de machine learning y deep learning,2024-11-01,10,activo
+MongoDB y NoSQL,Carlos Ruiz,Bases de Datos,25,199.99,Principiante,Introducción a bases de datos NoSQL,2024-10-10,25,activo

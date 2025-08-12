@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏨 Reserva de Hotel</title>
+    <link rel="stylesheet" href="03-reserva-hotel.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>🏨 Reserva de Hotel</h1>
+                <p>Reserva tu estadía perfecta con las mejores tarifas</p>
+            </div>
+
+            <form id="reservaForm" class="reserva-form">
+                <!-- Información del Cliente -->
+                <div class="form-section">
+                    <h3>👤 Información del Cliente</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="documento">Número de Documento *</label>
+                            <input type="text" id="documento" name="documento" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fechas de Estadia -->
+                <div class="form-section">
+                    <h3>📅 Fechas de Estadia</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fechaEntrada">Fecha de Entrada *</label>
+                            <input type="date" id="fechaEntrada" name="fechaEntrada" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fechaSalida">Fecha de Salida *</label>
+                            <input type="date" id="fechaSalida" name="fechaSalida" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="noches">Número de Noches</label>
+                            <input type="number" id="noches" name="noches" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="horaEntrada">Hora de Entrada</label>
+                            <select id="horaEntrada" name="horaEntrada">
+                                <option value="12:00">12:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selección de Habitación -->
+                <div class="form-section">
+                    <h3>🛏️ Selección de Habitación</h3>
+                    
+                    <div class="room-selection">
+                        <div class="room-option" data-tipo="individual" data-precio="80">
+                            <input type="radio" name="tipoHabitacion" value="individual" id="individual">
+                            <label for="individual">
+                                <div class="room-info">
+                                    <h4>Habitación Individual</h4>
+                                    <p>1 cama individual, baño privado</p>
+                                    <span class="price">$80/noche</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="room-option" data-tipo="doble" data-precio="120">
+                            <input type="radio" name="tipoHabitacion" value="doble" id="doble">
+                            <label for="doble">
+                                <div class="room-info">
+                                    <h4>Habitación Doble</h4>
+                                    <p>1 cama doble o 2 camas individuales</p>
+                                    <span class="price">$120/noche</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="room-option" data-tipo="suite" data-precio="200">
+                            <input type="radio" name="tipoHabitacion" value="suite" id="suite">
+                            <label for="suite">
+                                <div class="room-info">
+                                    <h4>Suite</h4>
+                                    <p>Habitación amplia con sala de estar</p>
+                                    <span class="price">$200/noche</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="room-option" data-tipo="familiar" data-precio="150">
+                            <input type="radio" name="tipoHabitacion" value="familiar" id="familiar">
+                            <label for="familiar">
+                                <div class="room-info">
+                                    <h4>Habitación Familiar</h4>
+                                    <p>2 habitaciones, ideal para familias</p>
+                                    <span class="price">$150/noche</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicios Adicionales -->
+                <div class="form-section">
+                    <h3>✨ Servicios Adicionales</h3>
+                    
+                    <div class="services-grid">
+                        <div class="service-item">
+                            <input type="checkbox" name="servicios" value="desayuno" id="desayuno">
+                            <label for="desayuno">
+                                <span class="service-icon">🍳</span>
+                                <span class="service-name">Desayuno Buffet</span>
+                                <span class="service-price">+$15/noche</span>
+                            </label>
+                        </div>
+                        
+                        <div class="service-item">
+                            <input type="checkbox" name="servicios" value="wifi" id="wifi">
+                            <label for="wifi">
+                                <span class="service-icon">📶</span>
+                                <span class="service-name">WiFi Premium</span>
+                                <span class="service-price">+$5/noche</span>
+                            </label>
+                        </div>
+                        
+                        <div class="service-item">
+                            <input type="checkbox" name="servicios" value="estacionamiento" id="estacionamiento">
+                            <label for="estacionamiento">
+                                <span class="service-icon">🚗</span>
+                                <span class="service-name">Estacionamiento</span>
+                                <span class="service-price">+$10/noche</span>
+                            </label>
+                        </div>
+                        
+                        <div class="service-item">
+                            <input type="checkbox" name="servicios" value="gimnasio" id="gimnasio">
+                            <label for="gimnasio">
+                                <span class="service-icon">💪</span>
+                                <span class="service-name">Acceso al Gimnasio</span>
+                                <span class="service-price">+$8/noche</span>
+                            </label>
+                        </div>
+                        
+                        <div class="service-item">
+                            <input type="checkbox" name="servicios" value="spa" id="spa">
+                            <label for="spa">
+                                <span class="service-icon">🧖‍♀️</span>
+                                <span class="service-name">Spa & Wellness</span>
+                                <span class="service-price">+$25/noche</span>
+                            </label>
+                        </div>
+                        
+                        <div class="service-item">
+                            <input type="checkbox" name="servicios" value="transporte" id="transporte">
+                            <label for="transporte">
+                                <span class="service-icon">🚐</span>
+                                <span class="service-name">Transporte Aeropuerto</span>
+                                <span class="service-price">+$30/ida</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de Pago -->
+                <div class="form-section">
+                    <h3>💳 Información de Pago</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="metodoPago">Método de Pago *</label>
+                            <select id="metodoPago" name="metodoPago" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                                <option value="transferencia">Transferencia Bancaria</option>
+                                <option value="efectivo">Efectivo</option>
+                                <option value="paypal">PayPal</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipoPago">Tipo de Pago</label>
+                            <select id="tipoPago" name="tipoPago">
+                                <option value="completo">Pago Completo</option>
+                                <option value="parcial">Pago Parcial (30%)</option>
+                                <option value="llegada">Pago a la Llegada</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comentarios">Comentarios Especiales</label>
+                        <textarea id="comentarios" name="comentarios" rows="3" placeholder="Solicitudes especiales, alergias, etc..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Resumen y Precio -->
+                <div class="form-section pricing-section">
+                    <h3>💰 Resumen de Precios</h3>
+                    
+                    <div class="pricing-breakdown">
+                        <div class="price-item">
+                            <span>Habitación:</span>
+                            <span id="precioHabitacion">$0</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Servicios:</span>
+                            <span id="precioServicios">$0</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Impuestos (18%):</span>
+                            <span id="precioImpuestos">$0</span>
+                        </div>
+                        <div class="price-item total">
+                            <span>Total:</span>
+                            <span id="precioTotal">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="form-actions">
+                    <button type="button" onclick="limpiarReserva()" class="btn btn-secondary">🧹 Limpiar</button>
+                    <button type="button" onclick="mostrarResumen()" class="btn btn-info">📋 Ver Resumen</button>
+                    <button type="submit" class="btn btn-primary">✅ Confirmar Reserva</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Panel de Resumen -->
+        <div class="summary-panel" id="summaryPanel">
+            <h3>📋 Resumen de Reserva</h3>
+            
+            <!-- Información del Cliente -->
+            <div class="summary-section">
+                <h4>👤 Cliente</h4>
+                <div id="clienteInfo"></div>
+            </div>
+            
+            <!-- Detalles de la Reserva -->
+            <div class="summary-section">
+                <h4>🏨 Detalles</h4>
+                <div id="detallesInfo"></div>
+            </div>
+            
+            <!-- Servicios Seleccionados -->
+            <div class="summary-section">
+                <h4>✨ Servicios</h4>
+                <div id="serviciosInfo"></div>
+            </div>
+            
+            <!-- Información de Pago -->
+            <div class="summary-section">
+                <h4>💳 Pago</h4>
+                <div id="pagoInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h2>✅ Reserva Confirmada</h2>
+            <p>Tu reserva ha sido confirmada exitosamente. Te hemos enviado un email con todos los detalles.</p>
+            <div class="reservation-details" id="modalDetails"></div>
+            <div class="modal-actions">
+                <button onclick="cerrarModal()" class="btn btn-primary">Cerrar</button>
+                <button onclick="imprimirReserva()" class="btn btn-secondary">🖨️ Imprimir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="03-reserva-hotel.js"></script>
+</body>
+</html>

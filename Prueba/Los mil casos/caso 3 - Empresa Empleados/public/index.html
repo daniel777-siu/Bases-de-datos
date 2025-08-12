@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏢 Empresa - Gestión de Empleados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 Sistema de Gestión de Empleados - Empresa</h1>
+            <p>Gestión completa de empleados con funcionalidades de CSV</p>
+        </header>
+
+        <!-- Panel de Estadísticas -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <h3>Total Empleados</h3>
+                <span id="total-empleados" class="stat-number">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Empleados Activos</h3>
+                <span id="empleados-activos" class="stat-number success">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Departamentos</h3>
+                <span id="total-departamentos" class="stat-number info">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Salario Promedio</h3>
+                <span id="salario-promedio" class="stat-number">$0</span>
+            </div>
+        </div>
+
+        <!-- Panel de Acciones -->
+        <div class="actions-panel">
+            <button onclick="mostrarModal('crear')" class="btn btn-primary">
+                ➕ Nuevo Empleado
+            </button>
+            <button onclick="cargarEstadisticas()" class="btn btn-info">
+                📊 Ver Estadísticas
+            </button>
+            <button onclick="exportarCSV()" class="btn btn-success">
+                📥 Exportar CSV
+            </button>
+            <button onclick="mostrarModal('importar')" class="btn btn-warning">
+                📤 Importar CSV
+            </button>
+        </div>
+
+        <!-- Panel de Búsqueda -->
+        <div class="search-panel">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar empleados..." class="search-input">
+            <button onclick="buscarEmpleados()" class="btn btn-primary">Buscar</button>
+            <button onclick="cargarEmpleados()" class="btn btn-secondary">Mostrar Todos</button>
+        </div>
+
+        <!-- Tabla de Empleados -->
+        <div class="table-container">
+            <table id="empleadosTable" class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Departamento</th>
+                        <th>Cargo</th>
+                        <th>Salario</th>
+                        <th>Fecha Contratación</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="empleadosTableBody">
+                    <!-- Los empleados se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para Crear/Editar Empleado -->
+    <div id="empleadoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2 id="modalTitle">Nuevo Empleado</h2>
+            
+            <form id="empleadoForm" onsubmit="guardarEmpleado(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departamento">Departamento:</label>
+                        <input type="text" id="departamento" name="departamento">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" id="cargo" name="cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="salario">Salario ($):</label>
+                        <input type="number" id="salario" name="salario" step="0.01" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fechaContratacion">Fecha de Contratación:</label>
+                        <input type="date" id="fechaContratacion" name="fechaContratacion">
+                    </div>
+                </div>
+                
+                <div class="form-group" id="estadoGroup" style="display: none;">
+                    <label for="activo">Estado:</label>
+                    <select id="activo" name="activo">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" onclick="cerrarModal()" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Importar CSV -->
+    <div id="importarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>Importar Empleados desde CSV</h2>
+            
+            <div class="csv-info">
+                <h3>📋 Formato del CSV:</h3>
+                <p>El archivo debe tener las siguientes columnas:</p>
+                <ul>
+                    <li><strong>nombre</strong> - Nombre del empleado</li>
+                    <li><strong>apellido</strong> - Apellido del empleado</li>
+                    <li><strong>email</strong> - Email del empleado (único)</li>
+                    <li><strong>telefono</strong> - Teléfono (opcional)</li>
+                    <li><strong>departamento</strong> - Departamento (opcional)</li>
+                    <li><strong>cargo</strong> - Cargo (opcional)</li>
+                    <li><strong>salario</strong> - Salario en dólares (opcional)</li>
+                    <li><strong>fecha_contratacion</strong> - Fecha de contratación YYYY-MM-DD (opcional)</li>
+                    <li><strong>activo</strong> - Estado activo (Sí/No o 1/0, opcional)</li>
+                </ul>
+                <p><strong>Nota:</strong> Los campos nombre, apellido y email son obligatorios.</p>
+            </div>
+            
+            <form id="csvForm" onsubmit="importarCSV(event)">
+                <div class="form-group">
+                    <label for="csvFile">Seleccionar archivo CSV:</label>
+                    <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Importar</button>
+                    <button type="button" onclick="cerrarModal()" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notifications" class="notifications"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

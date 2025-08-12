@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Productos - Caso 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Gestion de Productos</h1>
+        <p>Casos de Examen SQL - Caso 2</p>
+        
+        <!-- botones principales -->
+        <div class="botones">
+            <button id="btnNuevo" class="btn btn-primario">Nuevo Producto</button>
+            <button id="btnExportar" class="btn btn-secundario">Exportar CSV</button>
+        </div>
+        
+        <!-- busqueda -->
+        <div class="busqueda">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
+            <button id="btnBuscar" class="btn">Buscar</button>
+        </div>
+        
+        <!-- tabla de productos -->
+        <div class="tabla-container">
+            <table id="productosTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoria</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productosTableBody">
+                    <!-- los productos se cargan aqui -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- loading -->
+        <div id="loading" class="loading" style="display: none;">
+            Cargando...
+        </div>
+    </div>
+    
+    <!-- modal para agregar/editar -->
+    <div id="productoModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Nuevo Producto</h2>
+            
+            <form id="productoForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="stock">Stock:</label>
+                    <input type="number" id="stock" name="stock" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="categoria">Categoria:</label>
+                    <input type="text" id="categoria" name="categoria">
+                </div>
+                
+                <div class="form-botones">
+                    <button type="submit" class="btn btn-primario">Guardar</button>
+                    <button type="button" class="btn btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- modal de confirmacion -->
+    <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Confirmar</h3>
+            <p id="confirmMessage">¿Estas seguro?</p>
+            <div class="form-botones">
+                <button id="btnConfirmar" class="btn btn-peligro">Si, eliminar</button>
+                <button onclick="cerrarConfirmModal()" class="btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- notificaciones -->
+    <div id="notificacion" class="notificacion" style="display: none;"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

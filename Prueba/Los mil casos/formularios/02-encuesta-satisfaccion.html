@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Encuesta de Satisfacción</title>
+    <link rel="stylesheet" href="02-encuesta-satisfaccion.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>📊 Encuesta de Satisfacción</h1>
+                <p>Tu opinión es importante para mejorar nuestros servicios</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+            </div>
+
+            <form id="encuestaForm" class="encuesta-form">
+                <!-- Información del Cliente -->
+                <div class="form-section">
+                    <h3>👤 Información del Cliente</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edad">Rango de Edad</label>
+                            <select id="edad" name="edad">
+                                <option value="">Seleccionar...</option>
+                                <option value="18-25">18-25 años</option>
+                                <option value="26-35">26-35 años</option>
+                                <option value="36-45">36-45 años</option>
+                                <option value="46-55">46-55 años</option>
+                                <option value="56+">56+ años</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="genero">Género</label>
+                            <select id="genero" name="genero">
+                                <option value="">Seleccionar...</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="otro">Otro</option>
+                                <option value="prefiero-no-decir">Prefiero no decir</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calificación General -->
+                <div class="form-section">
+                    <h3>⭐ Calificación General</h3>
+                    
+                    <div class="rating-group">
+                        <label>¿Cómo calificarías tu experiencia general?</label>
+                        <div class="star-rating" id="ratingGeneral">
+                            <input type="radio" name="ratingGeneral" value="5" id="star5">
+                            <label for="star5">★</label>
+                            <input type="radio" name="ratingGeneral" value="4" id="star4">
+                            <label for="star4">★</label>
+                            <input type="radio" name="ratingGeneral" value="3" id="star3">
+                            <label for="star3">★</label>
+                            <input type="radio" name="ratingGeneral" value="2" id="star2">
+                            <label for="star2">★</label>
+                            <input type="radio" name="ratingGeneral" value="1" id="star1">
+                            <label for="star1">★</label>
+                        </div>
+                        <span class="rating-text" id="ratingText">Selecciona una calificación</span>
+                    </div>
+                </div>
+
+                <!-- Calificaciones Específicas -->
+                <div class="form-section">
+                    <h3>📋 Calificaciones por Categoría</h3>
+                    
+                    <div class="rating-categories">
+                        <div class="rating-item">
+                            <label>Atención al Cliente</label>
+                            <div class="rating-slider">
+                                <input type="range" name="atencionCliente" min="1" max="10" value="5" class="slider" id="atencionCliente">
+                                <span class="slider-value">5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rating-item">
+                            <label>Calidad del Producto/Servicio</label>
+                            <div class="rating-slider">
+                                <input type="range" name="calidadProducto" min="1" max="10" value="5" class="slider" id="calidadProducto">
+                                <span class="slider-value">5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rating-item">
+                            <label>Precio/Valor</label>
+                            <div class="rating-slider">
+                                <input type="range" name="precioValor" min="1" max="10" value="5" class="slider" id="precioValor">
+                                <span class="slider-value">5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rating-item">
+                            <label>Facilidad de Uso</label>
+                            <div class="rating-slider">
+                                <input type="range" name="facilidadUso" min="1" max="10" value="5" class="slider" id="facilidadUso">
+                                <span class="slider-value">5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rating-item">
+                            <label>Velocidad de Respuesta</label>
+                            <div class="rating-slider">
+                                <input type="range" name="velocidadRespuesta" min="1" max="10" value="5" class="slider" id="velocidadRespuesta">
+                                <span class="slider-value">5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preguntas de Sí/No -->
+                <div class="form-section">
+                    <h3>❓ Preguntas de Sí/No</h3>
+                    
+                    <div class="yes-no-questions">
+                        <div class="question-item">
+                            <label>¿Recomendarías nuestros servicios a otros?</label>
+                            <div class="radio-group">
+                                <input type="radio" name="recomendaria" value="si" id="recomendariaSi">
+                                <label for="recomendariaSi">Sí</label>
+                                <input type="radio" name="recomendaria" value="no" id="recomendariaNo">
+                                <label for="recomendariaNo">No</label>
+                                <input type="radio" name="recomendaria" value="talvez" id="recomendariaTalvez">
+                                <label for="recomendariaTalvez">Tal vez</label>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <label>¿Volverías a usar nuestros servicios?</label>
+                            <div class="radio-group">
+                                <input type="radio" name="volveria" value="si" id="volveriaSi">
+                                <label for="volveriaSi">Sí</label>
+                                <input type="radio" name="volveria" value="no" id="volveriaNo">
+                                <label for="volveriaNo">No</label>
+                                <input type="radio" name="volveria" value="talvez" id="volveriaTalvez">
+                                <label for="volveriaTalvez">Tal vez</label>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <label>¿Nuestros precios son competitivos?</label>
+                            <div class="radio-group">
+                                <input type="radio" name="preciosCompetitivos" value="si" id="preciosSi">
+                                <label for="preciosSi">Sí</label>
+                                <input type="radio" name="preciosCompetitivos" value="no" id="preciosNo">
+                                <label for="preciosNo">No</label>
+                                <input type="radio" name="preciosCompetitivos" value="talvez" id="preciosTalvez">
+                                <label for="preciosTalvez">Tal vez</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comentarios -->
+                <div class="form-section">
+                    <h3>💬 Comentarios Adicionales</h3>
+                    
+                    <div class="form-group">
+                        <label for="comentarios">¿Qué te gustó más de nuestros servicios?</label>
+                        <textarea id="comentarios" name="comentarios" rows="3" placeholder="Comparte tus experiencias positivas..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sugerencias">¿Qué podríamos mejorar?</label>
+                        <textarea id="sugerencias" name="sugerencias" rows="3" placeholder="Tus sugerencias nos ayudan a mejorar..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="form-actions">
+                    <button type="button" onclick="limpiarEncuesta()" class="btn btn-secondary">🧹 Limpiar</button>
+                    <button type="button" onclick="mostrarResultados()" class="btn btn-info">📊 Ver Resultados</button>
+                    <button type="submit" class="btn btn-primary">✅ Enviar Encuesta</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Panel de Resultados -->
+        <div class="results-panel" id="resultsPanel">
+            <h3>📈 Resultados de la Encuesta</h3>
+            
+            <!-- Gráfico de Calificaciones -->
+            <div class="chart-container">
+                <h4>Calificaciones por Categoría</h4>
+                <canvas id="ratingsChart" width="300" height="200"></canvas>
+            </div>
+            
+            <!-- Gráfico de Sí/No -->
+            <div class="chart-container">
+                <h4>Respuestas Sí/No</h4>
+                <canvas id="yesNoChart" width="300" height="200"></canvas>
+            </div>
+            
+            <!-- Estadísticas -->
+            <div class="stats-container">
+                <h4>📊 Estadísticas Generales</h4>
+                <div id="statsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h2>✅ Encuesta Enviada</h2>
+            <p>¡Gracias por tu tiempo y feedback! Tu opinión es muy valiosa para nosotros.</p>
+            <div class="modal-actions">
+                <button onclick="cerrarModal()" class="btn btn-primary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="02-encuesta-satisfaccion.js"></script>
+</body>
+</html>

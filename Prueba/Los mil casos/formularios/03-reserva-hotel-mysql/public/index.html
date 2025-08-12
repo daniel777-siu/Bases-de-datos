@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏨 Sistema de Reservas de Hotel - MySQL</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-hotel"></i> Sistema de Reservas de Hotel</h1>
+            <p>Gestión completa de reservas con base de datos MySQL</p>
+        </div>
+
+        <!-- Formulario de Reserva -->
+        <div class="form-container">
+            <!-- Información del Cliente -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    Información del Cliente
+                </h2>
+                <div class="form-group">
+                    <label for="nombre" class="required">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="required">Email</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+34 600 123 456">
+                </div>
+            </div>
+
+            <!-- Fechas de Estancia -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Fechas de Estancia
+                </h2>
+                <div class="date-inputs">
+                    <div class="form-group">
+                        <label for="checkIn" class="required">Fecha de Llegada</label>
+                        <input type="date" id="checkIn" name="checkIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkOut" class="required">Fecha de Salida</label>
+                        <input type="date" id="checkOut" name="checkOut" required>
+                    </div>
+                </div>
+                <div class="nights-info">
+                    <strong>Número de noches: <span id="nights">0</span></strong>
+                </div>
+            </div>
+
+            <!-- Selección de Habitación -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-bed"></i>
+                    Selección de Habitación
+                </h2>
+                <div id="roomOptions" class="room-options">
+                    <!-- Las habitaciones se cargarán dinámicamente desde la API -->
+                </div>
+            </div>
+
+            <!-- Servicios Adicionales -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-concierge-bell"></i>
+                    Servicios Adicionales
+                </h2>
+                <div id="servicesGrid" class="services-grid">
+                    <!-- Los servicios se cargarán dinámicamente desde la API -->
+                </div>
+            </div>
+
+            <!-- Información de Pago -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-credit-card"></i>
+                    Información de Pago
+                </h2>
+                <div class="payment-info">
+                    <div class="payment-row">
+                        <span class="payment-label">Precio por noche:</span>
+                        <span class="payment-value">$0.00</span>
+                    </div>
+                    <div class="payment-row">
+                        <span class="payment-label">Total habitación:</span>
+                        <span class="payment-value">$0.00</span>
+                    </div>
+                    <div class="payment-row">
+                        <span class="payment-label">Servicios adicionales:</span>
+                        <span class="payment-value">$0.00</span>
+                    </div>
+                    <div class="payment-row">
+                        <span class="payment-label">Total a pagar:</span>
+                        <span class="payment-value">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="buttons-container">
+                <button type="button" id="calculateBtn" class="btn btn-secondary">
+                    <i class="fas fa-calculator"></i> Calcular Precio
+                </button>
+                <button type="button" id="resetBtn" class="btn btn-secondary">
+                    <i class="fas fa-undo"></i> Reiniciar
+                </button>
+                <button type="button" id="submitBtn" class="btn btn-primary">
+                    <i class="fas fa-check"></i> Confirmar Reserva
+                </button>
+            </div>
+
+            <!-- Resumen de la Reserva -->
+            <div class="reservation-summary">
+                <h3 class="summary-title">
+                    <i class="fas fa-receipt"></i>
+                    Resumen de la Reserva
+                </h3>
+                <div class="summary-item">
+                    <span class="summary-label">Cliente:</span>
+                    <span class="summary-value">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Fechas:</span>
+                    <span class="summary-value">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Habitación:</span>
+                    <span class="summary-value">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total:</span>
+                    <span class="summary-value">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> Reserva Confirmada</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Su reserva ha sido confirmada exitosamente.</p>
+                <div id="reservationDetails"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="closeModal()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Estadísticas -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-chart-bar"></i> Estadísticas del Hotel</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="statsContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de Administración -->
+    <div class="admin-panel">
+        <button id="statsBtn" class="btn btn-secondary">
+            <i class="fas fa-chart-bar"></i> Estadísticas
+        </button>
+        <button id="exportBtn" class="btn btn-secondary">
+            <i class="fas fa-download"></i> Exportar CSV
+        </button>
+        <button id="importBtn" class="btn btn-secondary">
+            <i class="fas fa-upload"></i> Importar CSV
+        </button>
+        <input type="file" id="csvFile" accept=".csv" style="display: none;">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

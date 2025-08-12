@@ -1,0 +1,98 @@
+🔵 En tu SQL tendrías (estructura fija):
+#### usuarios
+
+id_usuario
+nombre
+email
+contraseña
+rol
+
+#### servidores
+
+id_servidor
+nombre
+tipo
+precio_mensual
+disponible (bool)
+
+#### ordenes
+
+id_orden
+id_usuario
+fecha
+estado (pendiente, pagado, cancelado)
+total
+
+#### orden_detalles
+
+id_orden
+id_servidor
+cantidad
+precio_unitario
+
+#### pagos
+
+id_pago
+id_orden
+estado
+metodo
+fecha_pago
+
+---
+
+🟢 En tu MongoDB (estructura flexible):
+#### logs
+
+{
+  "usuario_id": 123,
+  "accion": "inició sesión",
+  "fecha": "2025-08-04T12:01:00Z"
+}
+
+
+#### configuracion_servidores
+
+{
+  "servidor_id": 5,
+  "caracteristicas": {
+    "cpu": "8 vCPU",
+    "ram": "32 GB",
+    "almacenamiento": "1TB SSD",
+    "sistema_operativo": ["Ubuntu", "Windows", "CentOS"]
+  },
+  "networking": {
+    "puertos": [22, 80, 443],
+    "firewall": true
+  }
+}
+
+
+#### eventos_servidor
+
+{
+  "servidor_id": 5,
+  "evento": "servidor_reiniciado",
+  "fecha": "2025-08-04T14:12:00Z",
+  "admin_id": 1
+}
+
+
+#### historial_usuario
+
+{
+  "usuario_id": 123,
+  "ordenes_recientes": [101, 104, 108],
+  "notificaciones": [
+    { "tipo": "pago_aprobado", "orden_id": 104 },
+    { "tipo": "servidor_instalado", "servidor_id": 5 }
+  ]
+}
+
+
+---
+
+✅ ¿Qué ganas con esta separación?
+SQL te asegura que tus datos transaccionales estén protegidos y relacionados correctamente.
+NoSQL te permite extender capacidades sin romper esquemas: registrar logs, configuraciones técnicas muy variadas, o notificaciones sin complicarte.
+
+--- 

@@ -1,0 +1,6 @@
+nombre,apellido,email,telefono,departamento,cargo,salario,fecha_contratacion,activo
+Roberto,Silva,roberto.silva@empresa.com,555-0201,Tecnología,Arquitecto de Software,52000.00,2023-06-15,1
+Carmen,Vega,carmen.vega@empresa.com,555-0202,Marketing,Directora de Marketing,58000.00,2023-07-20,1
+Diego,Mendoza,diego.mendoza@empresa.com,555-0203,Ventas,Representante de Ventas,32000.00,2023-08-10,1
+Patricia,Castro,patricia.castro@empresa.com,555-0204,Recursos Humanos,Especialista en Reclutamiento,40000.00,2023-09-05,1
+Fernando,Ruiz,fernando.ruiz@empresa.com,555-0205,Finanzas,Analista Financiero,45000.00,2023-10-12,1
